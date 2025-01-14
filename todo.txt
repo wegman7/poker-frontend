@@ -1,2 +1,9 @@
 - why is this happening?
  - [Error: Route "/api/auth/[auth0]" used `params.auth0`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis]
+
+steps for frontend:
+ 1. first we need to get the table style right before worrying about the data
+ 2. need a button to create new game if we're logged in
+ 3. need a field to join an existing game
+ 4. both methods will route user to a table with a websockets connection
+ 5. get the rendering right

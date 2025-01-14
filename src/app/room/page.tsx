@@ -1,8 +1,9 @@
-export default function Home() {
+import PokerTable from './PokerTable';
+
+export default function Room() {
   return (
-    <div>
-      <h1>Room</h1>
-      <a href="/api/auth/logout">Logout</a>
+    <div className="flex justify-center items-center h-screen bg-green-800">
+      <PokerTable />
     </div>
   );
 }

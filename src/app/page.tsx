@@ -1,6 +1,7 @@
 'use client';
 
 import { useUser } from '@auth0/nextjs-auth0/client';
+import Link from 'next/link';
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
@@ -11,12 +12,12 @@ export default function Home() {
   if (user) {
     return (
       <div>
-        Welcome {user.name}! <a href="/api/auth/logout">Logout</a>
+        Welcome {user.name}! <Link href="/api/auth/logout">Logout</Link>
       </div>
     );
   }
 
   return (
-    <div>Click here to login - <a href="/api/auth/login">Login</a></div>
+    <div>Click here to login - <Link href="/api/auth/login">Login</Link></div>
   )
 }
