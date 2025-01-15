@@ -1,6 +1,7 @@
 import PlayerSeat from './PlayerSeat';
 
 const PokerTable = () => {
+  console.log(Array.from({ length: parseInt('17') }, (_, i) => [i + 1, `${i + 1}`]))
   return (
     // <div className="relative w-[80%] h-[80%] bg-green-900 rounded-full shadow-lg">
     //   {/* Community Cards */}
@@ -21,8 +22,10 @@ const PokerTable = () => {
     //   <PlayerSeat name="defraggle" stack="70.80" position="left" />
     //   <PlayerSeat name="zabiyakin" stack="7.05" position="top-left" />
     // </div>
+
     // you need absolute + top and left transfers to center it, max-h+max-w+aspect to keep the max size with correct aspect ratio
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-h-[calc(100vw*9/16)] max-w-[calc(100vh*16/9)] aspect-[16/9] grid grid-rows-12 grid-cols-12 bg-green-900 rounded-full shadow-lg">
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-h-[calc(100vw*9/16)] max-w-[calc(100vh*16/9)] aspect-[16/9] grid grid-rows-10 grid-cols-12">
+      <div className="row-start-3 row-end-8 col-start-3 col-end-11 bg-green-800 rounded-full"></div>
       <PlayerSeat seatId="0" />
       <PlayerSeat seatId="1" />
       <PlayerSeat seatId="2" />
