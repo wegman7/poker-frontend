@@ -7,3 +7,6 @@ steps for frontend:
  3. need a field to join an existing game
  4. both methods will route user to a table with a websockets connection
  5. get the rendering right
+
+
+- why isn't room page div taking up whole page?

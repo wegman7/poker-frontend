@@ -12,7 +12,9 @@ export default function Home() {
   if (user) {
     return (
       <div>
-        Welcome {user.name}! <Link href="/api/auth/logout">Logout</Link>
+        Welcome {user.name}!
+        <Link href="/room">Room</Link>
+        <Link href="/api/auth/logout">Logout</Link>
       </div>
     );
   }
