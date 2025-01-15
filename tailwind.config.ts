@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 
+// this is necessary if you want a grid larger than 12x12
 const GRID_ROWS: string = '10';
 const GRID_COLS: string = '12';
 
