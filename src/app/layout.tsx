@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <UserProvider>
-          <body className="bg-gray-900 text-white">
+          <body className="bg-gray-300 text-white">
             {/* <ThemeProvider> */}
               {children}
             {/* </ThemeProvider> */}

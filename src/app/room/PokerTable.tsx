@@ -21,18 +21,17 @@ const PokerTable = () => {
     //   <PlayerSeat name="defraggle" stack="70.80" position="left" />
     //   <PlayerSeat name="zabiyakin" stack="7.05" position="top-left" />
     // </div>
-    <div className="">
-      <div className="grid grid-rows-12 grid-cols-12 gap-4 max-h-[calc(100vw*9/16)] max-w-[calc(100vh*16/9)] aspect-[16/9] bg-green-900 rounded-full place-content-center">
-        <PlayerSeat seatId="0" />
-        <PlayerSeat seatId="1" />
-        <PlayerSeat seatId="2" />
-        <PlayerSeat seatId="3" />
-        <PlayerSeat seatId="4" />
-        <PlayerSeat seatId="5" />
-        <PlayerSeat seatId="6" />
-        <PlayerSeat seatId="7" />
-        <PlayerSeat seatId="8" />
-      </div>
+    // you need absolute + top and left transfers to center it, max-h+max-w+aspect to keep the max size with correct aspect ratio
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-h-[calc(100vw*9/16)] max-w-[calc(100vh*16/9)] aspect-[16/9] grid grid-rows-12 grid-cols-12 bg-green-900 rounded-full shadow-lg">
+      <PlayerSeat seatId="0" />
+      <PlayerSeat seatId="1" />
+      <PlayerSeat seatId="2" />
+      <PlayerSeat seatId="3" />
+      <PlayerSeat seatId="4" />
+      <PlayerSeat seatId="5" />
+      <PlayerSeat seatId="6" />
+      <PlayerSeat seatId="7" />
+      <PlayerSeat seatId="8" />
     </div>
   );
 };
