@@ -9,4 +9,11 @@ steps for frontend:
  5. get the rendering right
 
 
-- why isn't room page div taking up whole page?
+- finish styling cards
+- add component for communityCards
+- add component for pot
+- add component for player chipsInPot
+- add component for bet actions
+- add component for sit actions
+- add component for chips
+- WHY ISN'T GENERATEPOSITIONS FUNCTION WORKING???
