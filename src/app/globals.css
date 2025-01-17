@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .dynamic-text {
-  font-size: min(3vw * 3/4, 4vh * 3/4);
+  font-size: min(3vw * 1/2, 4vh * 1/2);
 }
 
 .dynamic-text-lg {
