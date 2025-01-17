@@ -18,7 +18,7 @@ export default function Room() {
     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-h-[calc(100vw*3/4)] max-w-[calc(100vh*4/3)] aspect-[4/3]">
       <div className="absolute top-[45%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] bg-green-800 rounded-[50%_50%_50%_50%]" />
       <Cards size={cardsSizes[2]} position={cardsPositions} cards={['As', 'Kd', 'Qc', 'Jh']} />
-      <Chips size={chipAreaSize} position={chipAreaPositions} />
+      <Chips size={chipAreaSize} position={chipAreaPositions} amount={67.25} />
       {[...Array(9)].map((_, index) => (
         <Seat key={index} seatId={index} />
       ))}

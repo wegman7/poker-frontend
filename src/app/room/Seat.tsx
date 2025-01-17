@@ -60,7 +60,7 @@ const Seat = ({ seatId }: { seatId: number }) => {
   return (
     <>
       <Cards size={cardsSize} position={cardsPositions[seatId]} cards={['As', 'Kd']} />
-      <Chips size={chipAreaSize} position={chipAreaPositions[seatId]} />
+      <Chips size={chipAreaSize} position={chipAreaPositions[seatId]} amount={100} />
       <PlayerInfo position={seatPositions[seatId]} />
     </>
   );
