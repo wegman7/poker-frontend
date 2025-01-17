@@ -30,13 +30,13 @@
 
 /* Poker chip with responsive sizing */
 .poker-chip {
-  width: min(3vw * 2, 4vh * 2); /* Slightly larger size */
-  height: min(3vw * 2, 4vh * 2); /* Matches width for a perfect circle */
+  width: min(3vw * 1.5, 4vh * 1.5); /* Slightly larger size */
+  height: min(3vw * 1.5, 4vh * 1.5); /* Matches width for a perfect circle */
   border-radius: 50%;
   background: white; /* Default color, overridden by prop */
   border: min(3vw / 5, 4vh / 5) dashed; /* Proportional border */
   position: relative;
-  transform: rotateX(65deg) translateZ(5px); /* Tilt forward */
+  transform: rotateX(55deg) translateZ(5px); /* Tilt forward */
   box-shadow: 0px 0.4em 1.2em rgba(0, 0, 0, 0.3);
   display: flex; /* Flexbox for centering */
   justify-content: center;
@@ -58,7 +58,7 @@
 
 /* Amount text in the center */
 .chip-amount {
-  font-size: min(3vw / 2, 4vh / 2); /* Slightly larger text size */
+  font-size: min(3vw * 0.32, 4vh * 0.8); /* Slightly larger text size */
   font-weight: bold;
   color: black;
   text-shadow: 0.05em 0.05em 0.1em rgba(0, 0, 0, 0.8); /* Adds depth */

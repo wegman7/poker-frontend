@@ -1,6 +1,6 @@
 import React from "react";
 
-const PokerChip = ({ amount, color }: { amount: number, color: string }) => {
+const Chip = ({ amount, color }: { amount: number, color: string }) => {
   return (
     <div className="chip-container">
       <div className="poker-chip" style={{ borderColor: color }}>
@@ -11,4 +11,4 @@ const PokerChip = ({ amount, color }: { amount: number, color: string }) => {
   );
 };
 
-export default PokerChip;
+export default Chip;
