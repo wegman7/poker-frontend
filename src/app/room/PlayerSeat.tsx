@@ -60,7 +60,7 @@ const cardTwoPositions: { [key: string]: string } = {
       <>
         <Card rank="A" suit="s" size={cardSize} position={cardOnePositions[seatId]} />
         <Card rank="A" suit="s" size={cardSize} position={cardTwoPositions[seatId]} />
-        <PokerChip amount={100} />
+        <PokerChip amount={100} color="red" />
         <div className={`${seatPositions[seatId]} absolute transform -translate-x-1/2 -translate-y-1/2 w-[15%] h-[5%] bg-gray-800 rounded-lg text-center dynamic-text`}>
           {seatId}
         </div>
