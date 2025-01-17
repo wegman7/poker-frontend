@@ -10,8 +10,7 @@
   // "dealer": false
 
 import Cards from "./Cards";
-import Chip from "./Chip";
-import ChipArea from "./ChipArea";
+import Chips from "./Chips";
 import PlayerInfo from "./PlayerInfo";
 
 const seatPositions: { [key: string]: string } = {
@@ -26,8 +25,8 @@ const seatPositions: { [key: string]: string } = {
   '8': 'left-[35%] top-[10%]',
 };
 
-const cardsSize: string = 'w-[14%] h-[12%]';
-const cardPositions: { [key: string]: string } = {
+const cardsSize: string = 'w-[12%] h-[11%]';
+const cardsPositions: { [key: string]: string } = {
   '0': 'left-[65%] top-[2%]',
   '1': 'left-[80%] top-[7%]',
   '2': 'left-[93%] top-[22%]',
@@ -39,7 +38,7 @@ const cardPositions: { [key: string]: string } = {
   '8': 'left-[35%] top-[2%]',
 };
 
-const chipAreaSize: string = 'w-[15%] h-[5%]';
+const chipAreaSize: string = 'w-[16%] h-[5%]';
 const chipAreaPositions: { [key: string]: string } = {
   '0': 'left-[60%] top-[20%]',
   '1': 'left-[77%] top-[25%]',
@@ -52,7 +51,7 @@ const chipAreaPositions: { [key: string]: string } = {
   '8': 'left-[40%] top-[20%]',
 };
 
-const PlayerSeat = ({ seatId }: { seatId: number }) => {
+const Seat = ({ seatId }: { seatId: number }) => {
   if (!(seatId in seatPositions)) {
     console.error(`Invalid seatId: ${seatId}`);
     return null;
@@ -60,12 +59,11 @@ const PlayerSeat = ({ seatId }: { seatId: number }) => {
 
   return (
     <>
-      <Cards size={cardsSize} position={cardPositions[seatId]} cards={['As', 'Kd']} />
-      <Chip amount={100} color="red" />
-      <ChipArea size={chipAreaSize} position={chipAreaPositions[seatId]} />
+      <Cards size={cardsSize} position={cardsPositions[seatId]} cards={['As', 'Kd']} />
+      <Chips size={chipAreaSize} position={chipAreaPositions[seatId]} />
       <PlayerInfo position={seatPositions[seatId]} />
     </>
   );
 };
 
-export default PlayerSeat;
+export default Seat;

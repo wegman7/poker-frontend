@@ -7,11 +7,11 @@
 }
 
 .dynamic-text-lg {
-  font-size: min(3vw * 1.4, 4vh * 1.4);
+  font-size: min(3vw * 1.3, 4vh * 1.4);
 }
 
 .dynamic-text-xl {
-  font-size: min(3vw * 1.8, 4vh * 1.8);
+  font-size: min(3vw * 1.6, 4vh * 1.6);
 }
 
 .card-border {
@@ -30,7 +30,7 @@
 
 /* Poker chip with responsive sizing */
 .poker-chip {
-  width: min(3vw * 1.5, 4vh * 1.5); /* Slightly larger size */
+  width: min(3vw * 1.3, 4vh * 1.3); /* Slightly larger size */
   height: min(3vw * 1.5, 4vh * 1.5); /* Matches width for a perfect circle */
   border-radius: 50%;
   background: white; /* Default color, overridden by prop */
@@ -45,8 +45,8 @@
 
 /* Inner ring of the poker chip */
 .chip-ring {
-  width: 75%; /* 75% of the poker chip size */
-  height: 75%;
+  width: 85%; /* 75% of the poker chip size */
+  height: 85%;
   border-radius: 50%;
   border: 0.2em solid; /* Proportional inner ring border */
   position: absolute;
@@ -59,7 +59,7 @@
 /* Amount text in the center */
 .chip-amount {
   font-size: min(3vw * 0.32, 4vh * 0.8); /* Slightly larger text size */
-  font-weight: bold;
+  font-weight: 400;
   color: black;
   text-shadow: 0.05em 0.05em 0.1em rgba(0, 0, 0, 0.8); /* Adds depth */
   z-index: 2; /* Ensure text is above other elements */
