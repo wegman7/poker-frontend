@@ -9,7 +9,7 @@
   // "spotlight": false,
   // "dealer": false
 
-import Card from "./Card";
+import Cards from "./Cards";
 import Chip from "./Chip";
 import ChipArea from "./ChipArea";
 
@@ -26,28 +26,16 @@ const seatPositions: { [key: string]: string } = {
 };
 
 const cardSize: string = 'w-[7%] h-[12%]';
-const cardOnePositions: { [key: string]: string } = {
-  '0': 'left-[61.5%] top-[2%]',
-  '1': 'left-[76.5%] top-[7%]',
-  '2': 'left-[89.5%] top-[22%]',
-  '3': 'left-[89.5%] top-[57%]',
-  '4': 'left-[46.5%] top-[83%]',
-  '5': 'left-[3.5%] top-[57%]',
-  '6': 'left-[3.5%] top-[22%]',
-  '7': 'left-[16.5%] top-[7%]',
-  '8': 'left-[31.5%] top-[2%]',
-};
-
-const cardTwoPositions: { [key: string]: string } = {
-  '0': 'left-[68.5%] top-[2%]',
-  '1': 'left-[83.5%] top-[7%]',
-  '2': 'left-[96.5%] top-[22%]',
-  '3': 'left-[96.5%] top-[57%]',
-  '4': 'left-[53.5%] top-[83%]',
-  '5': 'left-[10.5%] top-[57%]',
-  '6': 'left-[10.5%] top-[22%]',
-  '7': 'left-[23.5%] top-[7%]',
-  '8': 'left-[38.5%] top-[2%]',
+const cardPositions: { [key: string]: string } = {
+  '0': 'left-[65%] top-[2%]',
+  '1': 'left-[80%] top-[7%]',
+  '2': 'left-[93%] top-[22%]',
+  '3': 'left-[93%] top-[57%]',
+  '4': 'left-[50%] top-[83%]',
+  '5': 'left-[7%] top-[57%]',
+  '6': 'left-[7%] top-[22%]',
+  '7': 'left-[20%] top-[7%]',
+  '8': 'left-[35%] top-[2%]',
 };
 
 const chipAreaSize: string = 'w-[15%] h-[5%]';
@@ -71,8 +59,7 @@ const PlayerSeat = ({ seatId }: { seatId: number }) => {
 
   return (
     <>
-      <Card rank="A" suit="s" size={cardSize} position={cardOnePositions[seatId]} />
-      <Card rank="A" suit="s" size={cardSize} position={cardTwoPositions[seatId]} />
+      <Cards size={`w-[14%] h-[12%]`} position={cardPositions[seatId]} cards={['As', 'Kd']} />
       <Chip amount={100} color="red" />
       <ChipArea size={chipAreaSize} position={chipAreaPositions[seatId]} />
       <div className={`${seatPositions[seatId]} absolute transform -translate-x-1/2 -translate-y-1/2 w-[15%] h-[5%] bg-gray-800 rounded-lg text-center dynamic-text`}>
