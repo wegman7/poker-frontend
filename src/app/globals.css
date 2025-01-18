@@ -21,11 +21,6 @@
 /* Chip container to scale based on parent size */
 .chip-container {
   perspective: 500px; /* Adds perspective for the tilt */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%; /* Fully utilize parent width */
-  height: 100%; /* Fully utilize parent height */
 }
 
 /* Poker chip with responsive sizing */
