@@ -11,9 +11,7 @@ export default function RootLayout({
     <html lang="en">
       <UserProvider>
           <body className="bg-gray-900 text-white">
-            {/* <ThemeProvider> */}
               {children}
-            {/* </ThemeProvider> */}
           </body>
       </UserProvider>
     </html>
