@@ -29,13 +29,6 @@ export default function Room() {
       {[...Array(9)].map((_, index) => (
         <Seat key={index} seatId={index} />
       ))}
-      {/* <BetButtons 
-        min={0} 
-        max={100} 
-        step={1} 
-        initialValue={50} 
-        onChange={handleSliderChange} 
-      /> */}
       <BetButtons />
     </div>
   );
