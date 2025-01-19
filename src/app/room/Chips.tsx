@@ -29,7 +29,7 @@ const Chips = ({ size, position, amount }: { size: string, position: string, amo
 
   const yDiff = -6;
   return (
-    <div className={`absolute transform -translate-x-1/2 -translate-y-1/2 ${size} ${position} bg-gray-300 rounded-lg text-gray-800`}>
+    <div className={`absolute transform -translate-x-1/2 -translate-y-1/2 ${size} ${position} rounded-lg text-gray-800`}>
       <div className="relative w-full h-full">
         {[...Array(gray)].map((_, index) => (
           <Chip key={index} amount={brownValue} x={x['brown']} y={(index * yDiff).toString() + '%'} color="brown" />
