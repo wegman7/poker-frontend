@@ -4,6 +4,7 @@ import Cards from './Cards';
 import Chips from './Chips';
 import Seat from './Seat';
 import BetButtons from './BetButtons';
+import SitButtons from './SitButtons';
 
 const cardsSizes: { [key: string]: string } = {
   '0': 'w-[14%] h-[12%]',
@@ -29,6 +30,7 @@ export default function Room() {
       {[...Array(9)].map((_, index) => (
         <Seat key={index} seatId={index} />
       ))}
+      <SitButtons />
       <BetButtons />
     </div>
   );

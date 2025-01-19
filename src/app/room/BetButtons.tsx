@@ -22,7 +22,7 @@ const BetButtons: React.FC = () => {
 
   return (
     <div 
-      className="absolute w-[35%] left-[80%] top-[79%] transform -translate-x-1/2 text-white rounded-lg "
+      className="absolute w-[35%] right-[2%] bottom-[2%] text-white rounded-lg "
     >
       <div className="flex justify-between w-full mb-[2%]">
         <button className="w-1/3 bg-gray-700 py-[1%] px-[2%] rounded-md hover:bg-gray-600 dynamic-text">FOLD</button>
