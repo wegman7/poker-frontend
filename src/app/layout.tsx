@@ -1,4 +1,3 @@
-import { UserProvider } from '@auth0/nextjs-auth0/client';
 import "./globals.css";
 
 export default function RootLayout({
@@ -8,11 +7,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <UserProvider>
-          <body className="bg-gray-900 text-white">
-              {children}
-          </body>
-      </UserProvider>
+        <body className="bg-gray-900 text-white">
+            {children}
+        </body>
     </html>
   );
 }
