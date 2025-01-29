@@ -19,4 +19,9 @@ steps for frontend:
 - WHY ISN'T GENERATEPOSITIONS FUNCTION WORKING???
 
 - useUser is causing weird behavior
-- why are there so many rerenders inside room?
+- why are there so many rerenders inside room? could be websocket connecting
+
+
+- create component for adding chips
+- create reusable compoent for when pages are loading
+- what's wrong with ws connection

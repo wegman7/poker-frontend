@@ -11,6 +11,7 @@
 
 import Cards from "./Cards";
 import Chips from "./Chips";
+import { Player } from "./page";
 import PlayerInfo from "./PlayerInfo";
 
 const seatPositions: { [key: string]: string } = {
@@ -51,7 +52,7 @@ const chipAreaPositions: { [key: string]: string } = {
   '8': 'left-[40%] top-[20%]',
 };
 
-const Seat = ({ seatId }: { seatId: number }) => {
+const Seat = ({ seatId, player }: { seatId: number, player: Player }) => {
   if (!(seatId in seatPositions)) {
     console.error(`Invalid seatId: ${seatId}`);
     return null;
@@ -59,9 +60,9 @@ const Seat = ({ seatId }: { seatId: number }) => {
 
   return (
     <>
-      <Cards size={cardsSize} position={cardsPositions[seatId]} cards={['As', 'Kd']} />
-      <Chips size={chipAreaSize} position={chipAreaPositions[seatId]} amount={100} />
-      <PlayerInfo position={seatPositions[seatId]} />
+      <Cards size={cardsSize} position={cardsPositions[seatId]} cards={player.holeCards} />
+      <Chips size={chipAreaSize} position={chipAreaPositions[seatId]} amount={player.chipsInPot} />
+      <PlayerInfo position={seatPositions[seatId]} name={player.user} />
     </>
   );
 };

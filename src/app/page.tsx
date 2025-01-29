@@ -24,7 +24,7 @@ export default function Home() {
           </h1>
           <div className="flex flex-col items-center gap-6">
             <button className="bg-blue-600 text-white py-3 px-6 sm:py-4 sm:px-8 md:py-5 md:px-10 rounded-md hover:bg-blue-500 text-lg sm:text-xl md:text-2xl font-semibold transition-all">
-              <Link href={"/room/" + crypto.randomUUID()}>Create Game</Link>
+              <Link href={"/room/" + crypto.randomUUID() + "?startEngine=true"}>Create Game</Link>
             </button>
 
             <span className="text-white text-lg sm:text-xl md:text-2xl font-semibold">

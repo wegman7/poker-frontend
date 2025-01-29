@@ -1,4 +1,4 @@
-const SitButtons: React.FC = () => {
+const SitButtons = () => {
   return (
     <div 
       className="absolute w-[12%] left-[2%] bottom-[2%] text-white rounded-lg "
