@@ -13,6 +13,13 @@ const Card = ({ rank, suit }: { rank: string, suit: string }) => {
     s: 'black',
   };
 
+  if (rank + suit === 'xx') {
+    return (
+      <div className="relative h-[100%] flex-1 bg-gray-300 rounded-lg font-bold card-border">
+      </div>
+    );
+  }
+
   return (
     <div className="relative h-[100%] flex-1 bg-gray-300 rounded-lg font-bold card-border" style={{ color: fontColor[suit] }}>
       <div className="absolute left-[3%] -top-[14%] dynamic-text-lg">

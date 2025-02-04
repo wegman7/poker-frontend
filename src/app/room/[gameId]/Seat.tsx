@@ -26,7 +26,6 @@ const seatPositions: { [key: string]: string } = {
   '8': 'left-[35%] top-[10%]',
 };
 
-const cardsSize: string = 'w-[12%] h-[11%]';
 const cardsPositions: { [key: string]: string } = {
   '0': 'left-[65%] top-[2%]',
   '1': 'left-[80%] top-[7%]',
@@ -52,17 +51,21 @@ const chipAreaPositions: { [key: string]: string } = {
   '8': 'left-[40%] top-[20%]',
 };
 
-const Seat = ({ seatId, player }: { seatId: number, player: Player }) => {
+const Seat = ({ seatId, player }: { seatId: number, player: Player | null }) => {
   if (!(seatId in seatPositions)) {
     console.error(`Invalid seatId: ${seatId}`);
     return null;
   }
 
+  if (!player) {
+    return null;
+  }
+
   return (
     <>
-      <Cards size={cardsSize} position={cardsPositions[seatId]} cards={player.holeCards} />
-      <Chips size={chipAreaSize} position={chipAreaPositions[seatId]} amount={player.chipsInPot} />
-      <PlayerInfo position={seatPositions[seatId]} name={player.user} />
+      <Cards position={cardsPositions[seatId]} cards={player.holeCards} />
+      <Chips size={chipAreaSize} position={chipAreaPositions[seatId]} amount={player.chipsInPot} dealer={player.dealer} />
+      <PlayerInfo position={seatPositions[seatId]} name={player.user} chips={player.chips} spotlight={player.spotlight} />
     </>
   );
 };

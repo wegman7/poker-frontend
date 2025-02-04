@@ -40,7 +40,7 @@ export default function Home() {
                 className="w-full sm:w-64 py-3 px-4 sm:py-4 sm:px-6 md:py-5 md:px-8 rounded-md text-lg sm:text-xl md:text-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-400"
               />
               <button className="bg-green-600 text-white py-3 px-6 sm:py-4 sm:px-8 md:py-5 md:px-10 rounded-md hover:bg-green-500 text-lg sm:text-xl md:text-2xl font-semibold transition-all">
-                Join Game
+                <Link href={"/room/" + gameId + "?startEngine=false"}>Join Game</Link>
               </button>
             </div>
           </div>
