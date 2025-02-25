@@ -62,7 +62,7 @@ export default function Room() {
       const token = await getAccessToken();
 
       // Create and open a new WebSocket connection
-      const socket = new WebSocket(`ws://localhost:8000/ws/playerconsumer/${params.gameId}?token=${token}`);
+      const socket = new WebSocket(`ws://${process.env.NEXT_PUBLIC_BACKEND_URL}/ws/playerconsumer/${params.gameId}?token=${token}`);
       socketRef.current = socket;
 
       const startEngine = async (sb: number, bb: number) => {

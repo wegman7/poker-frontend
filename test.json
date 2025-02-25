@@ -1,0 +1,57 @@
+{
+  "type": "send.message",
+  "message": "broadcasting state...",
+  "event": {
+      "channelCommand": "sendState",
+      "bigBlind": 2,
+      "timebankTotal": 60,
+      "pot": 0,
+      "communityCards": null,
+      "players": {
+          "1": {
+              "seatId": 1,
+              "user": "auth0|66820bf8b97e7d87b0a74e1c",
+              "sittingOut": false,
+              "chips": 200,
+              "chipsInPot": 0,
+              "timeBank": 0,
+              "holeCards": null,
+              "spotlight": false,
+              "dealer": false
+          },
+          "2": {
+              "seatId": 2,
+              "user": "auth0|67809fa3d3a42225dad6d58f",
+              "sittingOut": false,
+              "chips": 300,
+              "chipsInPot": 0,
+              "timeBank": 0,
+              "holeCards": null,
+              "spotlight": false,
+              "dealer": true
+          },
+          "3": {
+              "seatId": 3,
+              "user": "auth0|67817a33b817b562fb7dc0d2",
+              "sittingOut": false,
+              "chips": 400,
+              "chipsInPot": 0,
+              "timeBank": 0,
+              "holeCards": null,
+              "spotlight": false,
+              "dealer": false
+          },
+          "4": {
+              "seatId": 4,
+              "user": "auth0|6781c578f82cfe866c4bd7af",
+              "sittingOut": false,
+              "chips": 1000,
+              "chipsInPot": 0,
+              "timeBank": 0,
+              "holeCards": null,
+              "spotlight": false,
+              "dealer": false
+          }
+      }
+  }
+}

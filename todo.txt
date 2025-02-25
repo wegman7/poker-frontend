@@ -10,3 +10,5 @@ backlog:
 
 - should we sent "myPlayer" from backend? that way frontend will automatically know which seat is theirs, and we can control players cards this way
 - fix min bet
+
+- add env vars for urls in frontend
