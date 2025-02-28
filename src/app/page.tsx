@@ -5,11 +5,10 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Home() {
-  const { user, error, isLoading } = useUser();
+  const { user, isLoading } = useUser();
   const [gameId, setGameId] = useState('');
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
 
   if (user) {
     return (

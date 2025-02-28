@@ -1,14 +1,4 @@
-
 backlog:
 - useUser is causing weird behavior
 - why are there so many rerenders inside room? could be websocket connecting
 - when a user creates a game, then joins the game, then refreshes if there's nothing else going on in the game no state will be sent back to the frontend
-
-
-- create component for adding chips
-- create reusable compoent for when pages are loading
-
-- should we sent "myPlayer" from backend? that way frontend will automatically know which seat is theirs, and we can control players cards this way
-- fix min bet
-
-- add env vars for urls in frontend
