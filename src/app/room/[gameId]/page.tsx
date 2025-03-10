@@ -62,11 +62,11 @@ export default function Room() {
       const token = await getAccessToken();
 
       // Create and open a new WebSocket connection
-      const socket = new WebSocket(`ws://${process.env.NEXT_PUBLIC_BACKEND_URL}/ws/playerconsumer/${params.gameId}?token=${token}`);
+      const socket = new WebSocket(`${process.env.NEXT_PUBLIC_BACKEND_URL}/ws/playerconsumer/${params.gameId}?token=${token}`);
       socketRef.current = socket;
 
       const startEngine = async (sb: number, bb: number) => {
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 5000));
         if (socketRef.current && searchParams.get('startEngine') === 'true') {
           socketRef.current.send(JSON.stringify(
             {
@@ -76,7 +76,7 @@ export default function Room() {
             }));
           console.log('Starting engine');
         }
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 5000));
         join();
       };
 

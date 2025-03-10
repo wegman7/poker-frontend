@@ -3,6 +3,7 @@ FROM node:18-alpine AS builder
 
 # Set working directory
 WORKDIR /app
+ENV NODE_ENV=production
 
 # Install dependencies (copies package.json and package-lock.json/yarn.lock)
 COPY package*.json ./
