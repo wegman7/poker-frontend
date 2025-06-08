@@ -2,3 +2,5 @@ backlog:
 - useUser is causing weird behavior
 - why are there so many rerenders inside room? could be websocket connecting
 - when a user creates a game, then joins the game, then refreshes if there's nothing else going on in the game no state will be sent back to the frontend
+- cards are loading slowly in prod - possible fix could be rendering an animation while they're loading maybe?
+- another prod issue is sometimes a player is getting BetButtons when they shouldn't (in between spotlight moving)
