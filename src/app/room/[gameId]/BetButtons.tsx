@@ -1,24 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const BetButtons = ({fold, check, call, bet, pot, collectedPot, currentBet, minRaise, chips, chipsInPot }: { fold: () => void, check: () => void, call: () => void, bet: (chips: number) => void, pot: number, collectedPot: number, currentBet: number, minRaise: number, chips: number, chipsInPot: number }) => {
+const BetButtons = ({ fold, check, call, bet, pot, collectedPot, currentBet, minRaise, chips, chipsInPot }: { fold: () => void, check: () => void, call: () => void, bet: (chips: number) => void, pot: number, collectedPot: number, currentBet: number, minRaise: number, chips: number, chipsInPot: number }) => {
   const minBet = Math.min(minRaise + currentBet, chips + chipsInPot);
   const maxBet = chips + chipsInPot;
   const [betAmount, setBetAmount] = useState<number>(minBet);
+
+  // Fix 2: reset bet amount when a new betting round starts
+  useEffect(() => {
+    setBetAmount(minBet);
+  }, [minBet]);
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBetAmount(Number(e.target.value));
   };
 
+  // Fix 1: pot-fraction buttons now use the actual pot as the base when there is no current bet
   const handleButtonClick = (multiplier: number) => {
-    if (currentBet === 0) {
-      setBetAmount(currentBet * multiplier);
-    } else {
-      setBetAmount((currentBet * 3 + pot - collectedPot - currentBet - chipsInPot) * multiplier);
-    }
+    const base = currentBet === 0
+      ? collectedPot + pot
+      : currentBet * 3 + pot - collectedPot - currentBet - chipsInPot;
+    setBetAmount(Math.min(Math.max(Math.round(base * multiplier), minBet), maxBet));
   };
 
   const handleAllIn = () => {
-    setBetAmount(chips + chipsInPot); // Set to max for ALL-IN
+    setBetAmount(chips + chipsInPot);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +38,7 @@ const BetButtons = ({fold, check, call, bet, pot, collectedPot, currentBet, minR
   };
 
   return (
-    <div 
+    <div
       className="absolute w-[35%] right-[2%] bottom-[2%] text-white rounded-lg "
     >
       <div className="flex justify-between w-full mb-[2%]">
@@ -43,7 +48,7 @@ const BetButtons = ({fold, check, call, bet, pot, collectedPot, currentBet, minR
         {
           chipsInPot === currentBet ?
           <button className="w-1/3 bg-green-600 py-[1%] px-[2%] rounded-md hover:bg-green-500 dynamic-text" onClick={check}>
-            CHECK <br /> 
+            CHECK <br />
           </button>
           :
           <button className="w-1/3 bg-green-600 py-[1%] px-[2%] rounded-md hover:bg-green-500 dynamic-text" onClick={call}>
@@ -62,7 +67,7 @@ const BetButtons = ({fold, check, call, bet, pot, collectedPot, currentBet, minR
 
       <div className="flex items-center w-full mb-[2%]">
         <div className="flex items-center flex-grow">
-          <button 
+          <button
             className="bg-gray-600 py-[3%] px-[3%] rounded-l-md hover:bg-gray-500 dynamic-text"
             onClick={() => setBetAmount(prev => Math.max(prev - 5, minBet))}
           >
@@ -76,7 +81,7 @@ const BetButtons = ({fold, check, call, bet, pot, collectedPot, currentBet, minR
             onChange={handleSliderChange}
             className="w-full mx-[2%]"
           />
-          <button 
+          <button
             className="bg-gray-600 py-[3%] px-[3%] rounded-r-md hover:bg-gray-500 dynamic-text"
             onClick={() => setBetAmount(prev => Math.min(prev + 5, maxBet))}
           >
@@ -92,25 +97,25 @@ const BetButtons = ({fold, check, call, bet, pot, collectedPot, currentBet, minR
       </div>
 
       <div className="flex justify-between w-full">
-        <button 
+        <button
           className="w-1/4 bg-gray-700 py-[2%] px-[2%] rounded-md hover:bg-gray-600 dynamic-text"
           onClick={() => handleButtonClick(1/2)}
         >
           1/2 Pot
         </button>
-        <button 
+        <button
           className="w-1/4 bg-gray-700 py-[2%] px-[2%] rounded-md hover:bg-gray-600 dynamic-text"
           onClick={() => handleButtonClick(2/3)}
         >
           2/3 Pot
         </button>
-        <button 
+        <button
           className="w-1/4 bg-gray-700 py-[2%] px-[2%] rounded-md hover:bg-gray-600 dynamic-text"
           onClick={() => handleButtonClick(1)}
         >
           Pot
         </button>
-        <button 
+        <button
           className="w-1/4 bg-red-600 py-[2%] px-[2%] rounded-md hover:bg-red-500 dynamic-text"
           onClick={handleAllIn}
         >
