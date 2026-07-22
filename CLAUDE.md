@@ -130,3 +130,7 @@ From `todo.txt` and observed in prod:
 - Cards render slowly in prod
 - `BetButtons` occasionally appears for the wrong player during spotlight transitions
 - `LoadingScreen.tsx` imports from `framer-motion`, but `package.json` declares `motion` (the v12 successor package). It resolves today only because `framer-motion` is present in `node_modules`; prefer `motion/react` in new code.
+
+### `sharp` override
+
+`package.json` pins `sharp` to `0.35.3` via `overrides`. This is deliberate and approved — do not remove it casually. `next@16` declares `sharp: ^0.34.5` as an optional dependency, and that entire range falls inside the vulnerable `<0.35.0` libvips window (CVE-2026-33327, CVE-2026-33328, CVE-2026-35590, CVE-2026-35591). The pin is safe only because `next/image` is never imported anywhere in `src/` — `sharp` is unreachable at runtime in this app. A future Next.js upgrade should revisit whether the pin is still needed, and anyone introducing `next/image` must re-evaluate it first.
