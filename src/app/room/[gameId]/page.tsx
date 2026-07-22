@@ -8,7 +8,7 @@ import Chips from './Chips';
 import Seat from './Seat';
 import BetButtons from './BetButtons';
 import SitButtons from './SitButtons';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import LoadingScreen from '@/app/components/LoadingScreen';
 
 const cardsPositions: string = 'left-[50%] top-[35%]';
@@ -61,19 +61,17 @@ export default function Room() {
   const [reconnectAttempt, setReconnectAttempt] = useState<number>(0);
   const [connectionFailed, setConnectionFailed] = useState<boolean>(false);
   const [message, setMessage] = useState<State>();
-  const [mySeatId, setMySeatId] = useState<number | null>(null);
   const [copied, setCopied] = useState<boolean>(false);
 
-  // Fix 4: find seat in an effect, not during render
-  useEffect(() => {
-    if (!message || !user || mySeatId !== null) return;
-    for (const [seatId, player] of Object.entries(message.players)) {
-      if (player.user === user.sub) {
-        setMySeatId(Number(seatId));
-        break;
-      }
-    }
-  }, [message, user, mySeatId]);
+  // Derived, not stored: recomputing keeps the seat correct if the player
+  // rejoins in a different seat, which the previous set-once effect did not.
+  const mySeatId = useMemo(() => {
+    if (!message || !user) return null;
+    const entry = Object.entries(message.players).find(
+      ([, player]) => player.user === user.sub
+    );
+    return entry ? Number(entry[0]) : null;
+  }, [message, user]);
 
   useEffect(() => {
     unmountedRef.current = false;

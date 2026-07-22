@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const BetButtons = ({ fold, check, call, bet, pot, collectedPot, currentBet, minRaise, chips, chipsInPot }: { fold: () => void, check: () => void, call: () => void, bet: (chips: number) => void, pot: number, collectedPot: number, currentBet: number, minRaise: number, chips: number, chipsInPot: number }) => {
   const minBet = Math.min(minRaise + currentBet, chips + chipsInPot);
   const maxBet = chips + chipsInPot;
   const [betAmount, setBetAmount] = useState<number>(minBet);
 
-  // Fix 2: reset bet amount when a new betting round starts
-  useEffect(() => {
+  // Reset the bet amount when a new betting round changes the minimum.
+  // Adjusting state during render is React's recommended pattern here; an
+  // effect would trigger a cascading render.
+  const [prevMinBet, setPrevMinBet] = useState<number>(minBet);
+  if (minBet !== prevMinBet) {
+    setPrevMinBet(minBet);
     setBetAmount(minBet);
-  }, [minBet]);
+  }
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBetAmount(Number(e.target.value));
