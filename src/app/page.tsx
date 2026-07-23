@@ -2,11 +2,13 @@
 
 import { useUser } from '@auth0/nextjs-auth0';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Home() {
   const { user, isLoading } = useUser();
   const [gameId, setGameId] = useState('');
+  const router = useRouter();
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -22,8 +24,11 @@ export default function Home() {
             Poker Game
           </h1>
           <div className="flex flex-col items-center gap-6">
-            <button className="bg-blue-600 text-white py-3 px-6 sm:py-4 sm:px-8 md:py-5 md:px-10 rounded-md hover:bg-blue-500 text-lg sm:text-xl md:text-2xl font-semibold transition-all">
-              <Link href={"/room/" + crypto.randomUUID() + "?startEngine=true"}>Create Game</Link>
+            <button
+              className="bg-blue-600 text-white py-3 px-6 sm:py-4 sm:px-8 md:py-5 md:px-10 rounded-md hover:bg-blue-500 text-lg sm:text-xl md:text-2xl font-semibold transition-all"
+              onClick={() => router.push(`/room/${crypto.randomUUID()}?startEngine=true`)}
+            >
+              Create Game
             </button>
 
             <span className="text-white text-lg sm:text-xl md:text-2xl font-semibold">
