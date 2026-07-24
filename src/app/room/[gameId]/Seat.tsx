@@ -11,7 +11,7 @@
 
 import Cards from "./Cards";
 import Chips from "./Chips";
-import { Player } from "./RoomClient";
+import { Player } from "./types";
 import PlayerInfo from "./PlayerInfo";
 
 const seatPositions: { [key: string]: string } = {
