@@ -1,9 +1,4 @@
-// Fix 5: strip Auth0 provider prefix and truncate the opaque ID
-const formatDisplayName = (sub: string) => {
-  const sep = sub.indexOf('|');
-  const id = sep >= 0 ? sub.slice(sep + 1) : sub;
-  return id.slice(0, 10);
-};
+import { formatDisplayName } from './displayName';
 
 const PlayerInfo = ({ position, name, chips, spotlight }: { position: string, name: string, chips: number, spotlight: boolean }) => {
   const ping = spotlight ? 'animate-pulse' : '';
