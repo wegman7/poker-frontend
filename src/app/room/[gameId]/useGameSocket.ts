@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getAccessToken } from '@auth0/nextjs-auth0';
 
-import type { State } from './types';
+import type { ChatPayload, State } from './types';
 import { appendEntries, newActionEntries, type FeedEntry } from './feed';
 
 const MAX_RECONNECTS = 5;
@@ -107,12 +107,13 @@ export function useGameSocket(gameId: string, shouldStartEngine: boolean): GameS
         const payload = parsed?.event;
 
         if (payload?.kind === 'chat') {
+          const chatPayload = payload as ChatPayload;
           setFeed((current) => appendEntries(current, [{
             kind: 'chat',
             id: nextEntryIdRef.current++,
-            user: payload.user,
-            text: payload.text,
-            timestamp: payload.timestamp,
+            user: chatPayload.user,
+            text: chatPayload.text,
+            timestamp: chatPayload.timestamp,
           }]));
           return;
         }
