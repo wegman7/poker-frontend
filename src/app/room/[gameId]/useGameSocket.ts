@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { getAccessToken } from '@auth0/nextjs-auth0';
 
 import type { State } from './types';
+import { appendEntries, newActionEntries, type FeedEntry } from './feed';
 
 const MAX_RECONNECTS = 5;
 const RECONNECT_DELAY_MS = 3000;
@@ -20,10 +21,12 @@ export interface GameCommands {
   check: () => void;
   call: () => void;
   bet: (chips: number) => void;
+  sendChat: (text: string) => void;
 }
 
 export interface GameSocket {
   state: State | undefined;
+  feed: FeedEntry[];
   isConnected: boolean;
   reconnectAttempt: number;
   connectionFailed: boolean;
@@ -42,6 +45,9 @@ export function useGameSocket(gameId: string, shouldStartEngine: boolean): GameS
   const [reconnectAttempt, setReconnectAttempt] = useState<number>(0);
   const [connectionFailed, setConnectionFailed] = useState<boolean>(false);
   const [state, setState] = useState<State>();
+  const [feed, setFeed] = useState<FeedEntry[]>([]);
+  const lastSeqRef = useRef(0);
+  const nextEntryIdRef = useRef(0);
 
   useEffect(() => {
     unmountedRef.current = false;
@@ -97,8 +103,45 @@ export function useGameSocket(gameId: string, shouldStartEngine: boolean): GameS
 
       socket.onmessage = (event) => {
         if (socketRef.current !== socket) return;
-        const nextState: State = JSON.parse(event.data).event;
+        const parsed = JSON.parse(event.data);
+        const payload = parsed?.event;
+
+        if (payload?.kind === 'chat') {
+          setFeed((current) => appendEntries(current, [{
+            kind: 'chat',
+            id: nextEntryIdRef.current++,
+            user: payload.user,
+            text: payload.text,
+            timestamp: payload.timestamp,
+          }]));
+          return;
+        }
+
+        // Rejections (bad command, oversize chat, rate limit) arrive with no
+        // `event` key at all. Before discrimination existed these fell through
+        // and blew away game state with undefined.
+        if (typeof parsed?.error === 'string') {
+          setFeed((current) => appendEntries(current, [{
+            kind: 'system',
+            id: nextEntryIdRef.current++,
+            text: parsed.error,
+          }]));
+          return;
+        }
+
+        if (payload?.kind !== 'state') return;
+
+        const nextState: State = payload;
         console.log('Received: state', nextState);
+
+        // Accumulated here rather than in an effect on `state`: this is an
+        // event, not derived state. The seq dedupe makes it idempotent.
+        const actions = newActionEntries(nextState.actionLog, lastSeqRef.current);
+        if (actions.length > 0) {
+          lastSeqRef.current = actions[actions.length - 1].entry.seq;
+          setFeed((current) => appendEntries(current, actions));
+        }
+
         setState(nextState);
       };
 
@@ -222,10 +265,20 @@ export function useGameSocket(gameId: string, shouldStartEngine: boolean): GameS
         'Betting'
       );
     },
+    sendChat: (text: string) => {
+      sendSocketCommand(
+        {
+          channelCommand: 'sendChat',
+          text
+        },
+        'Sending chat'
+      );
+    },
   };
 
   return {
     state,
+    feed,
     isConnected,
     reconnectAttempt,
     connectionFailed,

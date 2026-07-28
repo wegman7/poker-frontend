@@ -11,6 +11,7 @@ import BetButtons from './BetButtons';
 import SitButtons from './SitButtons';
 import LoadingScreen from '@/app/components/LoadingScreen';
 import { useGameSocket } from './useGameSocket';
+import FeedPanel from './FeedPanel';
 
 const cardsPositions: string = 'left-[50%] top-[35%]';
 
@@ -25,6 +26,7 @@ export default function RoomClient() {
 
   const {
     state,
+    feed,
     isConnected,
     reconnectAttempt,
     connectionFailed,
@@ -50,7 +52,11 @@ export default function RoomClient() {
   if (!state) return <LoadingScreen />;
 
   return (
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-h-[calc(100vw*3/4)] max-w-[calc(100vh*4/3)] aspect-[4/3]">
+    <>
+      {/* Outside the table div on purpose: that div is `transform`ed, which
+          would make a `fixed` child position against it instead of the viewport. */}
+      <FeedPanel feed={feed} myUser={user.sub} sendChat={commands.sendChat} />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-h-[calc(100vw*3/4)] max-w-[calc(100vh*4/3)] aspect-[4/3]">
       <button
         className="absolute top-[2%] left-[86%] text-white dynamic-text opacity-60 hover:opacity-100 transition-opacity"
         onClick={() => {
@@ -122,6 +128,7 @@ export default function RoomClient() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }
