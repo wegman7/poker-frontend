@@ -4,3 +4,10 @@ backlog:
 - when a user creates a game, then joins the game, then refreshes if there's nothing else going on in the game no state will be sent back to the frontend
 - cards are loading slowly in prod - possible fix could be rendering an animation while they're loading maybe?
 - another prod issue is sometimes a player is getting BetButtons when they shouldn't (in between spotlight moving)
+- add chip amount in pot
+- remove fold button when there's not current bet
+
+
+bug:
+- it looks like when one play goes all in the other player isn't able to properly hit all in as well. player should always be able to hit all in buttin to put all chips in the middle
+- 1/2 and full pot buttons seem to be putting in double (at least sometimes)
